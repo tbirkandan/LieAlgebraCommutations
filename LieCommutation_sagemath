@@ -1,0 +1,34 @@
+# SageMath code
+reset()
+# Enter the commutation relations
+# Example: For [J1,J2]=2J0, write ('J1','J2'):{'J0':2}
+K=QQ[I]
+commutation_relations={
+    ('J0','J1'):{'J1':1},
+    ('J0','J2'):{'J2':-1},
+    ('J0','K0'):{'J0':0},
+    ('J0','K1'):{'K1':1},
+    ('J0','K2'):{'K2':-1},
+    ('J1','J2'):{'J0':2},
+    ('J1','K0'):{'K1':I},
+    ('J1','K1'):{'J1':0},
+    ('J1','K2'):{'K0':-2*I},
+    ('J2','K0'):{'K2':I},
+    ('J2','K1'):{'K0':-2*I},
+    ('J2','K2'):{'J0':0},
+    ('K0','K1'):{'J1':-I},
+    ('K0','K2'):{'J2':-I},
+    ('K1','K2'):{'J0':-2}
+}
+#Define the algebra: 
+L.<J0,J1,J2,K0,K1,K2>=LieAlgebra(K,commutation_relations)
+show(L)
+A = L.universal_enveloping_algebra()
+
+# As an example, let us check the commutation [J0^2+J1^2+J2^2+K0^2+K1^2+K2^2,K0]
+show(A.bracket(J0*J0+J1*J2-J0-J0-K0*K0-K1*K2,J0))
+show(A.bracket(J0*J0+J1*J2-J0-J0-K0*K0-K1*K2,J1))
+show(A.bracket(J0*J0+J1*J2-J0-J0-K0*K0-K1*K2,J2))
+show(A.bracket(J0*J0+J1*J2-J0-J0-K0*K0-K1*K2,K0))
+show(A.bracket(J0*J0+J1*J2-J0-J0-K0*K0-K1*K2,K1))
+show(A.bracket(J0*J0+J1*J2-J0-J0-K0*K0-K1*K2,K2))
