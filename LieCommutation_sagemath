@@ -20,10 +20,10 @@ commutation_relations={
     ('K0','K2'):{'J2':-I},
     ('K1','K2'):{'J0':-2}
 }
-#Define the algebra: 
+# Define the algebra: 
 L.<J0,J1,J2,K0,K1,K2>=LieAlgebra(K,commutation_relations)
 show(L)
-A = L.universal_enveloping_algebra()
+A = L.universal_enveloping_algebra() # Needed for non-linear (J0*J1, K1*K1, etc) terms.
 
 # As an example, let us check the commutation [J0^2+J1^2+J2^2+K0^2+K1^2+K2^2,K0]
 show(A.bracket(J0*J0+J1*J2-J0-J0-K0*K0-K1*K2,J0))
